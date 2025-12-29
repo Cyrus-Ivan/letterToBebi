@@ -259,11 +259,10 @@ body {
   .letter {
     width: 95vw;
     font-size: 1rem;
+    transform: translate(-50%, -50%);
     animation-name: openmsg-smallscreen;
   }
 }
-
-/**/
 
 @keyframes openmsg-smallscreen {
   0% {
