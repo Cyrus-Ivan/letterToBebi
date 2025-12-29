@@ -52,7 +52,7 @@ body {
 }
 
 .envelope::before {
-  content: "˚ʚ❤︎ɞ˚";
+  content: "";
   font-size: 5rem;
   color: white;
   position: absolute;
@@ -134,7 +134,7 @@ body {
   position: relative;
   box-shadow: none;
   border: none;
-  width: 70px;
+  width: 100px;
   aspect-ratio: 1;
   background: radial-gradient(circle at 60% 65%, var(--heart-bg) 64%, #0000 65%)
       top left/50% 50%,
@@ -199,7 +199,7 @@ body {
   transform: translateY(-10px);
   display: block;
   color: var(--heart-text);
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-family: var(--letter-font);
 }
 
