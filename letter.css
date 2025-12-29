@@ -1,185 +1,332 @@
-* {
-    margin: 0;
-    padding: 0;
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap");
+
+:root {
+  --envelope-x: 300px;
+  --envelope-y: 200px;
+  --envelope-bg: Moccasin;
+  --envelope-shadow: Peru;
+  --letter-x: 250px;
+  --letter-y: calc(250px - 1rem - 10px);
+  --letter-bg: AntiqueWhite;
+  --letter-shadow: BurlyWood;
+  --letter-text: #180d07;
+  --letter-font: "Dancing Script", serif;
+  --letter-button-text: darkred;
+  --heart-bg: darkred;
+  --heart-text: white;
+}
+
+@media (min-width: 650px) {
+  :root {
+    --envelope-x: 600px;
+    --envelope-y: 400px;
+    --letter-x: 500px;
+    --letter-y: calc(400px - 1rem - 10px);
+  }
+}
+html {
+  font-size: 20px;
 }
 body {
-    width: 100vw;
-    height: 100vh;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #d9afd9;
-background-image: linear-gradient(0deg, #d9afd9 0%, #97d9e1 100%);
+  background-color: darkred;
+}
+
+.cssletter {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  -webkit-user-select: none;
+  margin: 24dvh 0;
+}
+
+.envelope {
+  position: relative;
+  width: var(--envelope-x);
+  height: var(--envelope-y);
+  background: var(--envelope-bg);
+  box-shadow: inset 0 0 30px -5px var(--envelope-shadow), 0 0 50vw 0 #540000;
+}
+
+.envelope::before {
+  content: "˚ʚ❤︎ɞ˚";
+  font-size: 5rem;
+  color: white;
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: soft-light;
+}
+
+.envelope-flap {
+  width: 100%;
+  height: 71%;
+  position: absolute;
+  top: 0;
+  z-index: 3;
   overflow: hidden;
+  transition: 0.6s linear all;
+  transform-origin: top;
+  pointer-events: all;
 }
 
-.card {
-    width: 700px;
-    height: 300px;
-    background-color: #f5efe6;
-    color: #334756;
-    box-shadow: 0px 0px 22px 5px rgb(237, 237, 237);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    font-size: 2.5em;
-    font-family: '楷体';
-    position: relative;
-    /* 使盒子具备透视效果 */
-    transform-style: preserve-3d;
-    transform: perspective(900px) rotateX(23deg);
-}
-.card::before,
-.card::after {
-    content: '';
-    width: 50%;
-    height: 100%;
-    color: #b7c4cf;
-    font-size: 40px;
-    position: absolute;
-    font-family: '华文行楷';
-
-}
-.card::before {
-    content: '写给你的';
-    left: 0;
-    top: 0;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    transition: 2s;
-    transform-origin: left;
-}
-.card::after {
-    content: '一封书信';
-    right: 0;
-    top: 0;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    transform-origin: right;
-    transition: 2s;
-
+.envelope-folds {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
-.card:hover::before {
-    transform: rotateY(-180deg);
+.envelope-flap::before,
+.envelope-left::before,
+.envelope-right::before,
+.envelope-bottom::before {
+  content: "";
+  transform: rotate(45deg);
+  background: var(--envelope-bg);
+  box-shadow: 0 0 30px -5px var(--envelope-shadow);
+  width: 100%;
+  aspect-ratio: 1;
+  display: block;
+  position: absolute;
+  top: 60%;
 }
-.card:hover::after {
-    transform: rotateY(180deg);
-}
-.content {
-    opacity: 0;
-    transition: 2s;
-}
-.card:hover .content {
-    opacity: 1;
-}
-/* 心动效果 */
-/* 因为写动画太琐碎了 所以偷个懒 这里就不再写了 */
-@keyframes change {
-    30% {
-      transform: rotate(45deg) scale(1.1) translateX(-70%);
-    }
-    40% {
-      transform: rotate(45deg) scale(1.3) translateX(-70%);
-    }
-    45% {
-      transform: rotate(45deg) scale(0.9) translateX(-70%);
-    }
-    50% {
-      transform: rotate(45deg) scale(0.5) translateX(-70%);
-    }
-    70% {
-      transform: rotate(45deg) scale(1) translateX(-70%);
-    }
-    80% {
-      transform: rotate(45deg) scale(1.5) translateX(-70%);
-    }
-    90% {
-      transform: rotate(45deg) scale(0.7) translateX(-70%);
-    }
-    95% {
-      transform: rotate(45deg) scale(1.5) translateX(-70%);
-    }
-    100% {
-      transform: rotate(45deg) scale(1.1) translateX(-70%);
-    }
-  } 
-  /* cv工程师 嘿嘿嘿 */
-  .heart {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    width: 50px;
-    height: 50px;
-    /* pink yyds */
-    background-color: pink;
-    /* 往右下脚偏一些 */
-    transform: rotate(45deg) translateX(-70%);
-    /* 给这个爱心绑定动画 */
-    /* 动画的名字 */
-    animation-name: change;
-    /* 动画持续时间 */
-    animation-duration: 2.7s;
-    /* 无限次播放动画 永远对你心动 */
-    animation-iteration-count: infinite;
-    cursor: pointer;
 
+.envelope-flap::before {
+  border-radius: 5rem;
+  bottom: 30px;
+  border-radius: 5rem;
+  top: auto;
+}
 
+@media (min-width: 650px) {
+  .envelope-flap::before {
+    bottom: 100px;
   }
-/* 画爱心桃 */
-.heart::before {
-    content: '';
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: pink;
-    position: absolute;
-    transform: translateX(-25px);
+}
 
+.envelope-left::before {
+  top: 10%;
+  left: -65%;
 }
-.heart::after {
-    content: '';
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: pink;
-    position: absolute;
-    transform: translateY(-25px);
+
+.envelope-right::before {
+  top: 10%;
+  right: -65%;
 }
-/* 中间的字体样式有点丑  调一下 */
-.text {
-    color: #7D6E83;
-    margin-top: 45px;
-    font-family: '华文行楷';
+
+.envelope-bottom::before {
+  top: 60%;
+  border-radius: 5rem;
 }
-.textTwo {
-    color: #7D6E83;
-    font-weight: bold;
-    font-size: 25px;
-    margin-top: 30px;
+
+.heart {
+  z-index: 4;
+  position: relative;
+  box-shadow: none;
+  border: none;
+  width: 70px;
+  aspect-ratio: 1;
+  background: radial-gradient(circle at 60% 65%, var(--heart-bg) 64%, #0000 65%)
+      top left/50% 50%,
+    radial-gradient(circle at 40% 65%, var(--heart-bg) 64%, #0000 65%) top
+      right/50% 50%,
+    conic-gradient(from -45deg at 50% 85.5%, var(--heart-bg) 90deg, #0000 0)
+      bottom/100% 50%;
+  background-repeat: no-repeat;
+  left: 50%;
+  top: 70%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
 }
-/* 神秘的box */
-#box {
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: -200;
-    opacity: 0;
-    color: #00ffd1;
-    padding-left: 5vw;
-    padding-right: 5vw;
-    padding-top: 13vh;
-    width: 90vw;
-    height: 87vh;
-    text-align: center;
-    background-image: url(bac.jpg);
-    overflow: hidden;
-    background-size: cover;
-    font-size: 25px;
-    font-family: '华文行楷';
-    transition: opacity 7s;
+
+@media (min-width: 650px) {
+  .heart {
+    width: 150px;
+  }
+}
+
+.heart::before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 70px;
+  aspect-ratio: 1;
+  background: radial-gradient(circle at 60% 65%, #ffffff26 64%, #0000 65%) top
+      left/50% 50%,
+    radial-gradient(circle at 40% 65%, #ffffff26 64%, #0000 65%) top right/50%
+      50%,
+    conic-gradient(from -45deg at 50% 85.5%, #ffffff26 90deg, #0000 0)
+      bottom/100% 50%;
+  background-repeat: no-repeat;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: 0.3s ease all;
+  z-index: -1;
+}
+
+@media (min-width: 650px) {
+  .heart::before {
+    width: 150px;
+  }
+}
+
+.heart:hover,
+.heart:active,
+.heart:focus {
+  transform: translate(-50%, -50%);
+  background-color: transparent;
+  color: var(--heart-text);
+}
+
+.heart:hover::before,
+.heart:active::before,
+.heart:focus::before {
+  transform: translate(-50%, -50%) scale(0.8);
+}
+
+.heart-text {
+  transform: translateY(-10px);
+  display: block;
+  color: var(--heart-text);
+  font-size: 1.1rem;
+  font-family: var(--letter-font);
+}
+
+.envelope.active * {
+  pointer-events: none;
+}
+
+.envelope.active .envelope-flap {
+  transform: rotateX(-180deg) translateY(0);
+  perspective: 10px;
+}
+
+.envelope.active .envelope-flap::before {
+  box-shadow: inset 0 0 30px -5px var(--envelope-shadow);
+}
+
+.envelope.active .heart {
+  display: none;
+}
+
+.letter {
+  box-sizing: border-box;
+  font-family: var(--letter-font);
+  font-size: 1rem;
+  line-height: 1.1;
+  background-color: var(--letter-bg);
+  color: var(--letter-text);
+  width: var(--letter-x);
+  height: var(--letter-y);
+  user-select: none;
+  box-shadow: inset 0 0 20px -5px var(--letter-shadow);
+  padding: 3rem 1rem 1rem;
+  margin: 0;
+  cursor: grab;
+  position: absolute;
+  top: 1rem;
+  overflow: auto;
+  text-align: center;
+  border: 0;
+}
+
+.letter:active {
+  cursor: grabbing;
+}
+
+.letter.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.letter cite {
+  font-size: 1.25rem;
+  color: var(--letter-text);
+  margin-top: 1rem;
+}
+
+.letter cite::before {
+  content: none;
+}
+
+.letter:nth-child(even) {
+  transform: skew(-2deg) translateY(-4px);
+}
+
+.letter:nth-child(odd) {
+  transform: skew(2deg) translateY(4px);
+}
+
+@media (min-width: 650px) {
+  .letter {
+    font-size: 1.3rem;
+  }
+}
+
+.closeLetter {
+  font-size: 0 !important;
+  position: absolute;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: none;
+  box-shadow: none;
+  padding: 0;
+  border: 0;
+}
+
+.closeLetter::before {
+  content: "˚ʚ❤︎ɞ˚";
+  font-size: 1.5rem !important;
+  font-family: var(--letter-font);
+  color: var(--letter-button-text);
+  text-align: center;
+}
+
+.closeLetter:hover,
+.closeLetter:active,
+.closeLetter:focus {
+  background-color: transparent;
+  color: var(--letter-text);
+  transform: translateX(-50%);
+  padding: 0;
+  margin: 0;
+}
+
+.closeLetter:hover::before,
+.closeLetter:active::before,
+.closeLetter:focus::before {
+  content: "xXx";
+}
+
+/* Attribution */
+@import url("https://frills.dev/css/abstracts/_variables.css");
+@import url("https://frills.dev/css/components/_logo.css");
+
+:root {
+  --bodybg: darkred;
+}
+
+footer {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 10000000;
+}
+
+footer svg {
+  width: 100px;
 }

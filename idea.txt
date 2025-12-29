@@ -1,0 +1,12 @@
+https://codepen.io/Simon-De-Guzman/pen/oNVdRpJ
+
+
+so you have this and then, when you open it, there would be polaroid pictures scrolling upward in the left and downward in the right
+
+make it so that the letter comes out of an envolope at first
+
+put a text on the bottom right or left of an envelope with the words: "letter for my bebi"
+
+
+this can be a good idea for an envelope opening:
+https://codepen.io/frills/pen/xbxxzBw
