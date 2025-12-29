@@ -262,6 +262,9 @@ body {
     transform: translate(-50%, -50%);
     animation-name: openmsg-smallscreen;
   }
+  .heart-text {
+    font-size: 0.8rem;
+  }
 }
 
 @keyframes openmsg-smallscreen {
