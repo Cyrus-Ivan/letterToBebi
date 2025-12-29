@@ -31,9 +31,7 @@ html {
 }
 body {
   background-color: darkred;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  margin: 0;
 }
 
 .cssletter {
@@ -228,32 +226,103 @@ body {
 .letter {
   z-index: 1000;
   box-sizing: border-box;
+
   font-family: var(--letter-font);
   font-size: 1.3rem;
   font-weight: lighter;
+  text-align: justify;
   line-height: 1.1;
+
   background-color: var(--letter-bg);
   color: var(--letter-text);
-  width: 50vw;
-  height: 90vh;
+
   user-select: none;
   box-shadow: inset 0 0 20px -5px var(--letter-shadow);
-  padding: 3rem 3rem 2.5rem;
-  margin: 0;
 
+  width: 50vw;
   position: absolute;
-  top: 1rem;
+  left: 50%;
+  top: 50%;
+  transform: skew(-1deg) translateY(4px) translate(-50%, -50%);
+
   overflow: auto;
-  text-align: justify;
-  border: 0;
-  transform: skew(-1deg) translateY(4px);
-  box-shadow: 5px 5px 15px 5px #180d07;
+  animation-name: openmsg;
+  animation-duration: 2s;
+  animation-timing-function: linear;
+  animation-play-state: paused;
+  animation-fill-mode: forwards;
+
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 }
 
 @media screen and (max-width: 650px) {
   .letter {
     width: 95vw;
-    padding: 1rem 1rem 1.25rem;
     font-size: 1rem;
+    animation-name: openmsg-smallscreen;
   }
+}
+
+/**/
+
+@keyframes openmsg-smallscreen {
+  0% {
+    height: 0px;
+    padding: 0px 20px;
+  }
+  100% {
+    height: 95vh;
+    padding: 1rem 1rem 1.25rem;
+    box-shadow: 5px 5px 15px 5px #180d07;
+  }
+}
+
+@keyframes openmsg {
+  0% {
+    height: 0px;
+    padding: 0px 20px;
+  }
+  100% {
+    height: 95vh;
+    padding: 1rem 3rem 3rem 2.5rem;
+    box-shadow: 5px 5px 15px 5px #180d07;
+  }
+}
+
+.openNor {
+  animation-direction: normal;
+  animation-play-state: running;
+}
+
+.closeNor {
+  animation-direction: reverse;
+  animation-play-state: running;
+}
+
+.no-anim {
+  animation: none;
+}
+
+.closed {
+  height: 0px;
+  padding: 0px 20px;
+}
+
+.bottom {
+  bottom: 5px;
+}
+
+#scrollbar1::-webkit-scrollbar {
+  width: 10px;
+}
+
+#scrollbar1::-webkit-scrollbar-track {
+  border-radius: 8px;
+  background-color: #e7e7e7;
+  border: 1px solid #cacaca;
+}
+
+#scrollbar1::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background-color: #d55959;
 }
