@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Loved+by+the+King&family=Satisfy&display=swap");
 
 :root {
   --envelope-x: 300px;
@@ -10,7 +10,7 @@
   --letter-bg: AntiqueWhite;
   --letter-shadow: BurlyWood;
   --letter-text: #180d07;
-  --letter-font: "Dancing Script", serif;
+  --letter-font: "Satisfy", serif;
   --letter-button-text: darkred;
   --heart-bg: darkred;
   --heart-text: white;
@@ -229,7 +229,8 @@ body {
   z-index: 1000;
   box-sizing: border-box;
   font-family: var(--letter-font);
-  font-size: 0.8rem;
+  font-size: 1.3rem;
+  font-weight: lighter;
   line-height: 1.1;
   background-color: var(--letter-bg);
   color: var(--letter-text);
@@ -239,39 +240,20 @@ body {
   box-shadow: inset 0 0 20px -5px var(--letter-shadow);
   padding: 3rem 3rem 2.5rem;
   margin: 0;
-  cursor: grab;
+
   position: absolute;
   top: 1rem;
   overflow: auto;
   text-align: justify;
   border: 0;
-  transform: skew(-2deg) translateY(4px);
+  transform: skew(-1deg) translateY(4px);
   box-shadow: 5px 5px 15px 5px #180d07;
 }
 
-.letter:active {
-  cursor: grabbing;
-}
-
-.letter.center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-
-.letter cite {
-  font-size: 1.25rem;
-  color: var(--letter-text);
-  margin-top: 1rem;
-}
-
-.letter cite::before {
-  content: none;
-}
-
-@media (min-width: 650px) {
+@media screen and (max-width: 650px) {
   .letter {
-    font-size: 1.3rem;
+    width: 95vw;
+    padding: 1rem 1rem 1.25rem;
+    font-size: 1rem;
   }
 }
