@@ -3,40 +3,18 @@ document.querySelector("#openEnvelope").addEventListener("click", () => {
   document.querySelector(".letter").classList.add("open-letter");
   document.querySelector(".letter").classList.remove("no-anim");
   document.querySelector(".letter").classList.add("openNor");
-});
 
-$("#messageState").on("change", (x) => {
-  $(".message").removeClass("openNor").removeClass("closeNor");
-  if ($("#messageState").is(":checked")) {
-    $(".message")
-      .removeClass("closed")
-      .removeClass("no-anim")
-      .addClass("openNor");
-    $(".heart")
-      .removeClass("closeHer")
-      .removeClass("openedHer")
-      .addClass("openHer");
-    $(".container").stop().animate({ backgroundColor: "#f48fb1" }, 2000);
-    console.log("Abrindo");
-  } else {
-    $(".message").removeClass("no-anim").addClass("closeNor");
-    $(".heart")
-      .removeClass("openHer")
-      .removeClass("openedHer")
-      .addClass("closeHer");
-    $(".container").stop().animate({ backgroundColor: "#fce4ec" }, 2000);
-    console.log("fechando");
-  }
+  const audio = new Audio("audio.mp3");
+  audio.volume = 0.1;
+  audio.play();
+  setTimeout(() => {
+    const interval = setInterval(() => {
+      audio.volume += 0.01;
+      audio.volume = audio.volume.toFixed(2);
+      console.log(audio.volume);
+      if (audio.volume == 0.9) {
+        clearInterval(interval);
+      }
+    }, 200);
+  }, 500);
 });
-
-$(".message").on(
-  "webkitAnimationEnd oanimationend msAnimationEnd animationend",
-  function (e) {
-    console.log("Animation End");
-    if ($(".message").hasClass("closeNor")) $(".message").addClass("closed");
-    $(".message")
-      .removeClass("openNor")
-      .removeClass("closeNor")
-      .addClass("no-anim");
-  }
-);
