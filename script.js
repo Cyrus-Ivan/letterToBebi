@@ -11,7 +11,6 @@ document.querySelector("#openEnvelope").addEventListener("click", () => {
     const interval = setInterval(() => {
       audio.volume += 0.01;
       audio.volume = audio.volume.toFixed(2);
-      console.log(audio.volume);
       if (audio.volume == 0.9) {
         clearInterval(interval);
       }
